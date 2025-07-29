@@ -1,19 +1,16 @@
 
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import React from 'react';
 import AboutMe from './AboutMe';
 import Navbar from './Navbar';
 
 
 function App() {
   return (
-    <Router>
+    <div>
       <Navbar />
       <div className="navbar-spacer" />
-      <Routes>
-        <Route path="/about" element={<AboutMe />} />
-        <Route path="/" element={<AboutMe />} />
-      </Routes>
-    </Router>
+      <AboutMe />
+    </div>
   );
 }
 

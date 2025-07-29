@@ -81,10 +81,10 @@ const Projects = () => {
       description: 'NFCLABS.com svetainė skirta įmonės siūlomų produktų ir sprendimų pristatymui, reklamai bei pardavimui. Svetainėje įdiegta patogi administravimo panelė, leidžianti lengvai valdyti turinį – pridėti, redaguoti ar pašalinti produktus, sprendimus bei kontaktinę informaciją. Taip pat integruota kontaktų forma, leidžianti lankytojams greitai susisiekti su įmone. Visa sistema sukurta naudojant Python, HTML, CSS ir JavaScript, užtikrinant aukštą saugumo, greičio ir funkcionalumo lygį.',
       technologies: ['Python', 'JavaScript', 'HTML5', 'CSS'],
       images: [
-        './images/web/1.png',
-        './images/web/2.png',
-        './images/web/3.png',
-        './images/web/4.png'
+        '/images/web/1.png',
+        '/images/web/2.png',
+        '/images/web/3.png',
+        '/images/web/4.png'
       ],
       demoUrl: 'https://nfclabs.com',
       demoText: 'Apžiūrėti svetainę'
@@ -93,8 +93,8 @@ const Projects = () => {
       title: 'Active Directory / CSV duomenų importo aplikacija',
       description: 'Aplikacija skirta importuoti/atnaujinti vartotojus NFCLABS Cloud platformoje imant duomenis iš Active Directory ar CSV failų. Pagrindinės funkcijos apima vartotojų kūrimą, redagavimą, šalinimą ir grupių valdymą. Aplikacijos parašytos naudojant Python kalbą. Stiliui nebuvo skiriama daug dėmesio - svarbiausia buvo aplikacijos veikimas.',
       images: [
-        './images/import/AD.png',
-        './images/import/CSV.png'
+        '/images/import/AD.png',
+        '/images/import/CSV.png'
       ],
       technologies: ['Python']
     }
