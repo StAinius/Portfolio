@@ -3,7 +3,7 @@
   margin-left: 50%;
   transform: translateX(-50%);
   box-sizing: border-box;
-  background: linear-gradient(135deg, #cfcfcf 0%, #b3b3b3 50%, #cecece 100%);
+  background: linear-gradient(135deg, #e8e8e8 0%, #d5d5d5 50%, #e0e0e0 100%);
 }
 /* ===== BASE STYLES & ROOT VARIABLES ===== */
 :root {

@@ -80,6 +80,12 @@ const Projects = () => {
       title: 'NFC-LABS svetainė',
       description: 'NFCLABS.com svetainė skirta įmonės siūlomų produktų ir sprendimų pristatymui, reklamai bei pardavimui. Svetainėje įdiegta patogi administravimo panelė, leidžianti lengvai valdyti turinį – pridėti, redaguoti ar pašalinti produktus, sprendimus bei kontaktinę informaciją. Taip pat integruota kontaktų forma, leidžianti lankytojams greitai susisiekti su įmone. Visa sistema sukurta naudojant Python, HTML, CSS ir JavaScript, užtikrinant aukštą saugumo, greičio ir funkcionalumo lygį.',
       technologies: ['Python', 'JavaScript', 'HTML5', 'CSS'],
+      images: [
+        '/images/web/1.png',
+        '/images/web/2.png',
+        '/images/web/3.png',
+        '/images/web/4.png'
+      ],
       demoUrl: 'https://nfclabs.com',
       demoText: 'Apžiūrėti svetainę'
     },
@@ -87,8 +93,8 @@ const Projects = () => {
       title: 'Active Directory / CSV duomenų importo aplikacija',
       description: 'Aplikacija skirta importuoti/atnaujinti vartotojus NFCLABS Cloud platformoje imant duomenis iš Active Directory ar CSV failų. Pagrindinės funkcijos apima vartotojų kūrimą, redagavimą, šalinimą ir grupių valdymą. Aplikacijos parašytos naudojant Python kalbą. Stiliui nebuvo skiriama daug dėmesio - svarbiausia buvo aplikacijos veikimas.',
       images: [
-        '/images/AD.png',
-        '/images/CSV.png'
+        '/images/import/AD.png',
+        '/images/import/CSV.png'
       ],
       technologies: ['Python']
     }
@@ -293,8 +299,8 @@ const Projects = () => {
         }
 
         .demo-link {
-          background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
-          color: #000;
+          background: linear-gradient(135deg, #d0d0d0, #c0c0c0);
+          color: #444444;
         }
 
         .demo-link:hover {
@@ -315,10 +321,11 @@ const Projects = () => {
         }
 
         .image-container img {
-          width: auto;
-          max-width: 750px;
-          height: 450px;
+          width: 600px;
+          height: 400px;
           object-fit: contain;
+          background: #f8f8f8;
+          border-radius: 8px;
         }
 
         .image-navigation {
@@ -390,7 +397,8 @@ const Projects = () => {
           }
 
           .image-container img {
-            height: 180px;
+            width: 100%;
+            height: 200px;
           }
         }
       `}</style>
