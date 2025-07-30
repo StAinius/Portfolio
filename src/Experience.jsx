@@ -269,25 +269,63 @@ const Experience = () => {
         }
 
         @media (max-width: 768px) {
+          .experience-list {
+            gap: 2rem;
+            margin-top: 2rem;
+          }
+
+          .experience-item {
+            padding: 1.5rem;
+          }
+
           .exp-company-row {
             flex-direction: column;
             align-items: flex-start;
             gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.5rem;
           }
 
           .exp-role-row {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          gap: 1rem;
-        }
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+          }
 
-        .exp-compact-header {
+          .exp-compact-header {
             align-items: flex-start;
           }
 
           .exp-arrow-container {
             margin-top: 0.5rem;
+          }
+
+          .exp-company {
+            font-size: 1.2rem;
+          }
+
+          .exp-role {
+            font-size: 1rem;
+          }
+
+          .exp-date {
+            font-size: 0.9rem;
+            padding: 0.4rem 0.8rem;
+          }
+
+          .exp-details ul {
+            margin-left: 1rem;
+            font-size: 0.95rem;
+          }
+
+          .exp-details ul li {
+            margin-bottom: 0.6rem;
+            line-height: 1.5;
+          }
+
+          .exp-details.expanded {
+            max-height: 600px;
           }
         }
       `}</style>

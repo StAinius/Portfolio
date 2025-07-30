@@ -388,8 +388,18 @@ const Projects = () => {
         }
 
         @media (max-width: 768px) {
+          .projects-list {
+            gap: 2rem;
+            margin-top: 2rem;
+          }
+
+          .project-item {
+            padding: 1.5rem;
+          }
+
           .project-content {
             flex-direction: column;
+            gap: 1.5rem;
           }
 
           .project-images {
@@ -399,7 +409,34 @@ const Projects = () => {
 
           .image-container img {
             width: 100%;
-            height: 200px;
+            height: auto;
+            max-height: 250px;
+          }
+
+          .project-title {
+            font-size: 1.2rem;
+          }
+
+          .project-description p {
+            font-size: 0.95rem;
+            line-height: 1.5;
+          }
+
+          .tech-tags {
+            justify-content: center;
+          }
+
+          .project-links {
+            justify-content: center;
+          }
+
+          .project-details.expanded {
+            max-height: 1000px;
+          }
+
+          .image-navigation {
+            justify-content: center;
+            gap: 1rem;
           }
         }
       `}</style>

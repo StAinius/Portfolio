@@ -22,6 +22,7 @@ const scrollToSection = (id, setActiveSection) => {
 
 const Navbar = () => {
   const [activeSection, setActiveSection] = useState('about');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -65,25 +66,45 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+
+  const handleNavClick = (sectionId) => {
+    scrollToSection(sectionId, setActiveSection);
+    setMobileMenuOpen(false); // Close mobile menu after navigation
+  };
+
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        {sections.map((section) => (
-          <a
-            key={section.id} 
-            href={`#${section.id}`}
-            className={`navbar-item ${activeSection === section.id ? 'active' : ''}`}
-            data-description={section.description}
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection(section.id, setActiveSection);
-            }}
-          >
-            <div className="linktext">
-              {section.label}
-            </div>
-          </a>
-        ))}
+        <button 
+          className={`mobile-menu-toggle ${mobileMenuOpen ? 'active' : ''}`}
+          onClick={toggleMobileMenu}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        
+        <div className={`navbar-menu ${mobileMenuOpen ? 'active' : ''}`}>
+          {sections.map((section) => (
+            <a
+              key={section.id} 
+              href={`#${section.id}`}
+              className={`navbar-item ${activeSection === section.id ? 'active' : ''}`}
+              data-description={section.description}
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick(section.id);
+              }}
+            >
+              <div className="linktext">
+                {section.label}
+              </div>
+            </a>
+          ))}
+        </div>
       </div>
     </nav>
   );
