@@ -27,8 +27,10 @@ echo GitHub repository: https://github.com/StAinius/Portfolio
 echo GitHub Pages: https://stainius.github.io/Portfolio/
 echo.
 echo Jei tai buvo pirmas įkėlimas:
-echo 1. Eikite į GitHub Settings ^> Pages
+echo 1. Eikite į https://github.com/StAinius/Portfolio/settings/pages
 echo 2. Source: pasirinkite "GitHub Actions"
 echo 3. Palaukite 3-5 minutes
+echo.
+echo Jei GitHub Actions neveikia, Source: pasirinkite "Deploy from a branch" ^> main
 echo.
 pause
