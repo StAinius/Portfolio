@@ -14,6 +14,17 @@ if exist dist\assets (
     xcopy /E /Y dist\assets\* assets\
 )
 
+REM Kopijuojame nuotraukas iš public
+echo Kopijuojame nuotraukas...
+if exist public\img (
+    if not exist img mkdir img
+    xcopy /E /Y public\img\* img\
+)
+if exist public\images (
+    if not exist images mkdir images
+    xcopy /E /Y public\images\* images\
+)
+
 REM Keliame į GitHub
 echo Siųnčiame į GitHub...
 git add .
