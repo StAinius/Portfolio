@@ -1,11 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { getImagePath } from './config';
+import MatrixTitle from './MatrixTitle';
+import TypingText from './TypingText';
 
-const ProjectItem = ({ title, description, images, image, technologies, demoUrl, demoText }) => {
+const ProjectItem = ({ title, description, images, image, technologies, demoUrl, demoText, index }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const itemRef = useRef(null);
 
   const projectImages = images || (image ? [image] : []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !isVisible) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (itemRef.current) {
+      observer.observe(itemRef.current);
+    }
+
+    return () => {
+      if (itemRef.current) {
+        observer.unobserve(itemRef.current);
+      }
+    };
+  }, [isVisible]);
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % projectImages.length);
@@ -15,11 +40,24 @@ const ProjectItem = ({ title, description, images, image, technologies, demoUrl,
     setCurrentImageIndex((prev) => (prev - 1 + projectImages.length) % projectImages.length);
   };
 
+  const handleToggleExpand = () => {
+    setIsExpanded(!isExpanded);
+  };
+
   return (
-    <div className="project-item">
+    <div 
+      ref={itemRef}
+      className="project-item"
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? 'translateX(0)' : `translateX(${index % 2 === 0 ? '-100px' : '100px'})`,
+        transition: 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
+        transitionDelay: `${index * 0.3}s`
+      }}
+    >
       <div 
         className="project-compact-header"
-        onClick={() => setIsExpanded(!isExpanded)}
+        onClick={handleToggleExpand}
       >
         <div className="project-main-info">
           <div className="project-title-row">
@@ -35,8 +73,16 @@ const ProjectItem = ({ title, description, images, image, technologies, demoUrl,
       
       <div className={`project-details ${isExpanded ? 'expanded' : ''}`}>
         <div className="project-content">
-          <div className="project-description">
-            <p>{description}</p>
+        <div className="project-description">
+          <p>
+            <TypingText 
+              isVisible={isExpanded} 
+              delay={100} 
+              speed={3}
+            >
+              {description}
+            </TypingText>
+          </p>
             {technologies && (
               <div className="project-technologies">
                 <h4>Technologijos:</h4>
@@ -103,11 +149,14 @@ const Projects = () => {
 
   return (
     <section id="projects">
-      <h1 className="section-title">Projektai</h1>
+      <h1 className="section-title">
+        <MatrixTitle>Projektai</MatrixTitle>
+      </h1>
       <div className="projects-list">
         {projects.map((project, index) => (
           <ProjectItem
             key={index}
+            index={index}
             title={project.title}
             description={project.description}
             image={project.image}
@@ -219,14 +268,12 @@ const Projects = () => {
           overflow: hidden;
           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
           opacity: 0;
-          transform: translateX(-20px);
           margin-top: 0;
         }
 
         .project-details.expanded {
           max-height: 800px;
           opacity: 1;
-          transform: translateX(0);
           margin-top: 1.5rem;
           padding-top: 1rem;
           border-top: 1px solid var(--bg-border);
@@ -240,8 +287,7 @@ const Projects = () => {
 
         .project-description {
           flex: 1;
-          opacity: 0;
-          animation: fadeInUp 0.3s ease forwards;
+          opacity: 1;
         }
 
         .project-details.expanded .project-description {
@@ -253,6 +299,7 @@ const Projects = () => {
           font-size: 1rem;
           line-height: 1.6;
           margin-bottom: 1.5rem;
+          min-height: 1.2em;
         }
 
         .project-technologies {
@@ -306,15 +353,20 @@ const Projects = () => {
 
         .demo-link:hover {
           transform: translateY(-1px);
+          box-shadow: none;
         }
 
         .project-images {
           flex: 0 0 600px;
-
+          opacity: 0;
+          transform: translateX(30px);
+          transition: all 0.4s ease;
         }
 
         .project-details.expanded .project-images {
           opacity: 1;
+          transform: translateX(0);
+          animation: fadeInRight 0.4s ease forwards;
         }
 
         .image-container {

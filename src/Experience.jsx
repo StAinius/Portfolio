@@ -1,13 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import MatrixTitle from './MatrixTitle';
+import TypingText from './TypingText';
 
-const ExperienceItem = ({ company, role, period, details, className }) => {
+const ExperienceItem = ({ company, role, period, details, className, index }) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const itemRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !isVisible) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (itemRef.current) {
+      observer.observe(itemRef.current);
+    }
+
+    return () => {
+      if (itemRef.current) {
+        observer.unobserve(itemRef.current);
+      }
+    };
+  }, [isVisible]);
+
+  const handleToggleExpand = () => {
+    setIsExpanded(!isExpanded);
+  };
 
   return (
-    <div className={`experience-item ${className}`}>
+    <div 
+      ref={itemRef}
+      className={`experience-item ${className}`}
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? 'translateX(0)' : `translateX(${index % 2 === 0 ? '-100px' : '100px'})`,
+        transition: 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
+        transitionDelay: `${index * 0.2}s`
+      }}
+    >
       <div 
         className="exp-compact-header"
-        onClick={() => setIsExpanded(!isExpanded)}
+        onClick={handleToggleExpand}
       >
         <div className="exp-main-info">
           <div className="exp-company-row">
@@ -26,7 +64,15 @@ const ExperienceItem = ({ company, role, period, details, className }) => {
       <div className={`exp-details ${isExpanded ? 'expanded' : ''}`}>
         <ul>
           {details.map((detail, index) => (
-            <li key={index}>{detail}</li>
+            <li key={index}>
+              <TypingText 
+                isVisible={isExpanded} 
+                delay={index * 200 + 100} 
+                speed={3}
+              >
+                {detail}
+              </TypingText>
+            </li>
           ))}
         </ul>
       </div>
@@ -74,11 +120,14 @@ const Experience = () => {
 
   return (
     <section id="experience">
-      <h2 className="section-title">Patirtis</h2>
+      <h2 className="section-title">
+        <MatrixTitle>Patirtis</MatrixTitle>
+      </h2>
       <div className="experience-list">
         {experiences.map((exp, index) => (
           <ExperienceItem
             key={index}
+            index={index}
             company={exp.company}
             role={exp.role}
             period={exp.period}
@@ -180,14 +229,12 @@ const Experience = () => {
           overflow: hidden;
           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
           opacity: 0;
-          transform: translateX(-20px);
           margin-top: 0;
         }
 
         .exp-details.expanded {
           max-height: 500px;
           opacity: 1;
-          transform: translateX(0);
           margin-top: 1.5rem;
           padding-top: 1rem;
           border-top: 1px solid var(--bg-border);
@@ -206,29 +253,7 @@ const Experience = () => {
           margin-bottom: 0.8rem;
           line-height: 1.6;
           color: var(--primary-dark);
-          transition: color 0.3s ease;
-          opacity: 0;
-          animation: fadeInUp 0.3s ease forwards;
-        }
-
-        .exp-details.expanded ul li {
-          opacity: 1;
-        }
-
-        .exp-details.expanded ul li:nth-child(1) {
-          animation-delay: 0.1s;
-        }
-
-        .exp-details.expanded ul li:nth-child(2) {
-          animation-delay: 0.2s;
-        }
-
-        .exp-details.expanded ul li:nth-child(3) {
-          animation-delay: 0.3s;
-        }
-
-        .exp-details.expanded ul li:nth-child(4) {
-          animation-delay: 0.4s;
+          min-height: 1.2em;
         }
 
         @keyframes fadeInUp {
