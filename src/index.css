@@ -380,7 +380,12 @@ a:hover {
     flex-direction: column;
     text-align: center;
     gap: 2rem;
-    padding: 1rem 0;
+    padding: 1rem 16px;
+  }
+
+  #about p {
+    padding: 0 16px;
+    text-align: left;
   }
 
   .profile-photo-container {
@@ -487,6 +492,11 @@ a:hover {
 
   .about-row {
     gap: 1.5rem;
+    padding: 1rem 12px;
+  }
+
+  #about p {
+    padding: 0 12px;
   }
 
   #skills ul li {
