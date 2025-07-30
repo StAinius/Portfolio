@@ -1,5 +1,6 @@
 import React from 'react';
 import LazySection from './LazySection';
+import { getImagePath } from './config';
 
 import Experience from './Experience';
 import Projects from './Projects';
@@ -26,7 +27,7 @@ const AboutMe = () => (
       <div className="profile-photo-container">
         <div className="profile-photo-flip">
           <div className="profile-photo-front">
-            <img src="https://raw.githubusercontent.com/StAinius/Portfolio/main/public/img/im.png" alt="Ainius Stonkus" />
+            <img src={getImagePath('/img/im.png')} alt="Ainius Stonkus" />
           </div>
           <div className="profile-photo-back">
             <div className="profile-info">
