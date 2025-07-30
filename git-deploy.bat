@@ -7,38 +7,28 @@ if errorlevel 1 (
     exit /b 1
 )
 
-echo Tikriname ar yra git repository...
+echo Deploying to GitHub Pages...
 
-REM Tikriname ar yra .git folderis
-if not exist .git (
-    echo Kuriame nauja GitHub repository...
-    echo # Portfolio >> README.md
-    git init
-    git add .
-    git commit -m "Initial commit"
-    git branch -M main
-    git remote add origin https://github.com/StAinius/Portfolio.git
-    git push -u origin main
-    echo.
-    echo Pirminis ikėlimas sėkmingas!
-) else (
-    echo Atnaujinime egzistuojanti repository...
-    git add .
-    git commit -m "Update portfolio - %date% %time%"
-    git push
-    echo.
-    echo Atnaujinimas sėkmingas!
-)
+REM Push source code to main branch
+git add .
+git commit -m "Update portfolio - %date% %time%"
+git push origin main
+
+REM Deploy dist folder to gh-pages branch
+echo Deploying dist to gh-pages branch...
+git add dist -f
+git commit -m "Update dist folder - %date% %time%"
+git subtree push --prefix dist origin gh-pages
 
 echo.
 echo GitHub repository: https://github.com/StAinius/Portfolio
 echo GitHub Pages: https://stainius.github.io/Portfolio/
 echo.
-echo Jei tai buvo pirmas įkėlimas:
+echo Setup GitHub Pages:
 echo 1. Eikite į https://github.com/StAinius/Portfolio/settings/pages
-echo 2. Source: pasirinkite "GitHub Actions"
-echo 3. Palaukite 3-5 minutes
-echo.
-echo Jei GitHub Actions neveikia, Source: pasirinkite "Deploy from a branch" ^> main
+echo 2. Source: pasirinkite "Deploy from a branch"
+echo 3. Branch: pasirinkite "gh-pages" ir "/ (root)"
+echo 4. Save
+echo 5. Palaukite 2-3 minutes
 echo.
 pause
