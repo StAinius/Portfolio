@@ -1,4 +1,12 @@
 @echo off
+echo Building project...
+call npm run build
+if errorlevel 1 (
+    echo Build failed!
+    pause
+    exit /b 1
+)
+
 echo Tikriname ar yra git repository...
 
 REM Tikriname ar yra .git folderis
