@@ -38,23 +38,19 @@ const AboutMe = () => (
       </div>
     </div>
 
-    <div className="section-separator" />
     <div className="section-dark" style={{ textAlign: 'left', padding: '4rem 0' }}>
       <div className="main-content">
         <Skills />
       </div>
     </div>
-    <div className="section-separator" />
     <div style={{ textAlign: 'left' }}>
       <Experience />
     </div>
-    <div className="section-separator" />
     <div className="section-dark" style={{ textAlign: 'left', padding: '4rem 0' }}>
       <div className="main-content">
         <Projects />
       </div>
     </div>
-    <div className="section-separator" />
     <div style={{ textAlign: 'left' }}>
       <Contact />
     </div>

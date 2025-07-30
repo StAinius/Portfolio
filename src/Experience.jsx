@@ -130,6 +130,8 @@ const Experience = () => {
           box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12),
             -5px 0 20px rgba(120, 120, 120, 0.15);
         }
+
+        .exp-compact-header {
           display: flex;
           justify-content: space-between;
           align-items: center;
