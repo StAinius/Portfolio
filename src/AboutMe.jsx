@@ -26,7 +26,7 @@ const AboutMe = () => (
       <div className="profile-photo-container">
         <div className="profile-photo-flip">
           <div className="profile-photo-front">
-            <img src="/Portfolio/img/im.png" alt="Ainius Stonkus" />
+            <img src="./img/im.png" alt="Ainius Stonkus" />
           </div>
           <div className="profile-photo-back">
             <div className="profile-info">
